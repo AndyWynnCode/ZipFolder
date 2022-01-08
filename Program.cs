@@ -182,7 +182,7 @@ static class Program
             string[] replaceString = pathInfo[1].Split("%nextFileNumber%");
             if (replaceString.Length != 2) throw new Exception();
             List<string> fileList = Directory.GetFiles(pathInfo[0], $"{replaceString[0]}*{replaceString[1]}").ToList();
-            replaceString[0] = pathInfo[0] + replaceString[0];
+            replaceString[0] = pathInfo[0] + "\\" + replaceString[0];
             List<string> fileNumbers = fileList.Select(x => x.Replace(replaceString[0], "").Replace(replaceString[1], "")).ToList();
             List<float> fileFloats = new();
             try
@@ -201,6 +201,7 @@ static class Program
                 }
                 float maxFile = fileFloats.Max();
                 int nextFileNumber = (int)maxFile;
+                if (nextFileNumber == 0) throw new Exception();
                 config.nextFileNumber = ++nextFileNumber;
             }
             catch
