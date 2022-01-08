@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>ZipFolder</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <VersionPrefix>1.0.2</VersionPrefix>
+    <Company>WynnCo</Company>
+    <Authors>Andy Wynn</Authors>
+    <Copyright>Copyright © 2022 Andy Wynn and WynnCo</Copyright>
+  </PropertyGroup>
+
+</Project>

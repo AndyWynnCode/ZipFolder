@@ -1,0 +1,116 @@
+bin/Debug/net6.0/win-x64/ZipFolder.deps.json
+bin/Debug/net6.0/win-x64/ZipFolder.dll
+bin/Debug/net6.0/win-x64/ZipFolder.exe
+bin/Debug/net6.0/win-x64/ZipFolder.pdb
+bin/Debug/net6.0/win-x64/ZipFolder.runtimeconfig.json
+bin/Debug/net6.0/win-x64/ref/7z instructions.dll
+bin/Debug/net6.0/win-x64/ref/ZipFolder.dll
+bin/Release/net6.0/win-x64/7z instructions.deps.json
+bin/Release/net6.0/win-x64/7z instructions.dll
+bin/Release/net6.0/win-x64/7z instructions.exe
+bin/Release/net6.0/win-x64/7z instructions.pdb
+bin/Release/net6.0/win-x64/7z instructions.runtimeconfig.json
+bin/Release/net6.0/win-x64/ZipFolder.deps.json
+bin/Release/net6.0/win-x64/ZipFolder.dll
+bin/Release/net6.0/win-x64/ZipFolder.exe
+bin/Release/net6.0/win-x64/ZipFolder.pdb
+bin/Release/net6.0/win-x64/ZipFolder.runtimeconfig.json
+bin/Release/net6.0/win-x64/publish/ZipFolder.exe
+bin/Release/net6.0/win-x64/publish/ZipFolder.pdb
+bin/Release/net6.0/win-x64/ref/7z instructions.dll
+bin/Release/net6.0/win-x64/ref/ZipFolder.dll
+obj/7z instructions.csproj.nuget.dgspec.json
+obj/7z instructions.csproj.nuget.g.props
+obj/7z instructions.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
+obj/ZipFolder.csproj.nuget.dgspec.json
+obj/ZipFolder.csproj.nuget.g.props
+obj/ZipFolder.csproj.nuget.g.targets
+obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+obj/Debug/net6.0/7z instructions.AssemblyInfo.cs
+obj/Debug/net6.0/7z instructions.AssemblyInfoInputs.cache
+obj/Debug/net6.0/7z instructions.assets.cache
+obj/Debug/net6.0/7z instructions.csproj.AssemblyReference.cache
+obj/Debug/net6.0/7z instructions.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0/7z instructions.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/7z instructions.dll
+obj/Debug/net6.0/7z instructions.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/7z instructions.genruntimeconfig.cache
+obj/Debug/net6.0/7z instructions.GlobalUsings.g.cs
+obj/Debug/net6.0/7z instructions.pdb
+obj/Debug/net6.0/apphost.exe
+obj/Debug/net6.0/ref/7z instructions.dll
+obj/Debug/net6.0/win-x64/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+obj/Debug/net6.0/win-x64/7z instructions.AssemblyInfo.cs
+obj/Debug/net6.0/win-x64/7z instructions.AssemblyInfoInputs.cache
+obj/Debug/net6.0/win-x64/7z instructions.assets.cache
+obj/Debug/net6.0/win-x64/7z instructions.csproj.AssemblyReference.cache
+obj/Debug/net6.0/win-x64/7z instructions.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0/win-x64/7z instructions.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/win-x64/7z instructions.dll
+obj/Debug/net6.0/win-x64/7z instructions.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/win-x64/7z instructions.genruntimeconfig.cache
+obj/Debug/net6.0/win-x64/7z instructions.GlobalUsings.g.cs
+obj/Debug/net6.0/win-x64/7z instructions.pdb
+obj/Debug/net6.0/win-x64/apphost.exe
+obj/Debug/net6.0/win-x64/ZipFolder.AssemblyInfo.cs
+obj/Debug/net6.0/win-x64/ZipFolder.AssemblyInfoInputs.cache
+obj/Debug/net6.0/win-x64/ZipFolder.assets.cache
+obj/Debug/net6.0/win-x64/ZipFolder.csproj.AssemblyReference.cache
+obj/Debug/net6.0/win-x64/ZipFolder.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0/win-x64/ZipFolder.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/win-x64/ZipFolder.dll
+obj/Debug/net6.0/win-x64/ZipFolder.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/win-x64/ZipFolder.genruntimeconfig.cache
+obj/Debug/net6.0/win-x64/ZipFolder.GlobalUsings.g.cs
+obj/Debug/net6.0/win-x64/ZipFolder.pdb
+obj/Debug/net6.0/win-x64/ref/7z instructions.dll
+obj/Debug/net6.0/win-x64/ref/ZipFolder.dll
+obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+obj/Release/net6.0/7z instructions.AssemblyInfo.cs
+obj/Release/net6.0/7z instructions.AssemblyInfoInputs.cache
+obj/Release/net6.0/7z instructions.assets.cache
+obj/Release/net6.0/7z instructions.csproj.AssemblyReference.cache
+obj/Release/net6.0/7z instructions.csproj.CoreCompileInputs.cache
+obj/Release/net6.0/7z instructions.csproj.FileListAbsolute.txt
+obj/Release/net6.0/7z instructions.dll
+obj/Release/net6.0/7z instructions.GeneratedMSBuildEditorConfig.editorconfig
+obj/Release/net6.0/7z instructions.genruntimeconfig.cache
+obj/Release/net6.0/7z instructions.GlobalUsings.g.cs
+obj/Release/net6.0/7z instructions.pdb
+obj/Release/net6.0/apphost.exe
+obj/Release/net6.0/PublishOutputs.7e0c446e00.txt
+obj/Release/net6.0/ref/7z instructions.dll
+obj/Release/net6.0/win-x64/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+obj/Release/net6.0/win-x64/7z instructions.AssemblyInfo.cs
+obj/Release/net6.0/win-x64/7z instructions.AssemblyInfoInputs.cache
+obj/Release/net6.0/win-x64/7z instructions.assets.cache
+obj/Release/net6.0/win-x64/7z instructions.csproj.AssemblyReference.cache
+obj/Release/net6.0/win-x64/7z instructions.csproj.CoreCompileInputs.cache
+obj/Release/net6.0/win-x64/7z instructions.csproj.FileListAbsolute.txt
+obj/Release/net6.0/win-x64/7z instructions.deps.json
+obj/Release/net6.0/win-x64/7z instructions.dll
+obj/Release/net6.0/win-x64/7z instructions.GeneratedMSBuildEditorConfig.editorconfig
+obj/Release/net6.0/win-x64/7z instructions.genruntimeconfig.cache
+obj/Release/net6.0/win-x64/7z instructions.GlobalUsings.g.cs
+obj/Release/net6.0/win-x64/7z instructions.pdb
+obj/Release/net6.0/win-x64/apphost.exe
+obj/Release/net6.0/win-x64/PublishOutputs.9c953b71d3.txt
+obj/Release/net6.0/win-x64/PublishOutputs.256887dbfa.txt
+obj/Release/net6.0/win-x64/singlefilehost.exe
+obj/Release/net6.0/win-x64/ZipFolder.AssemblyInfo.cs
+obj/Release/net6.0/win-x64/ZipFolder.AssemblyInfoInputs.cache
+obj/Release/net6.0/win-x64/ZipFolder.assets.cache
+obj/Release/net6.0/win-x64/ZipFolder.csproj.AssemblyReference.cache
+obj/Release/net6.0/win-x64/ZipFolder.csproj.CoreCompileInputs.cache
+obj/Release/net6.0/win-x64/ZipFolder.csproj.FileListAbsolute.txt
+obj/Release/net6.0/win-x64/ZipFolder.dll
+obj/Release/net6.0/win-x64/ZipFolder.GeneratedMSBuildEditorConfig.editorconfig
+obj/Release/net6.0/win-x64/ZipFolder.genruntimeconfig.cache
+obj/Release/net6.0/win-x64/ZipFolder.GlobalUsings.g.cs
+obj/Release/net6.0/win-x64/ZipFolder.pdb
+obj/Release/net6.0/win-x64/R2R/7z instructions.dll
+obj/Release/net6.0/win-x64/R2R/ZipFolder.dll
+obj/Release/net6.0/win-x64/ref/7z instructions.dll
+obj/Release/net6.0/win-x64/ref/ZipFolder.dll
