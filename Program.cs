@@ -122,7 +122,7 @@ static class Program
     private static void ZipFileList()
     {
         string args = $"/C 7z.exe a {(config.zipFormat == "zip" ? "-tzip" : "-t7z")} \"{EnumerateString(config.zipDestPath)}\" @filelist.txt -mx=9";
-        Console.WriteLine(args);
+        //Console.WriteLine(args);
         System.Diagnostics.ProcessStartInfo processInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", args);
         processInfo.WorkingDirectory = config.rootPathNonNull;
         processInfo.CreateNoWindow = true;
