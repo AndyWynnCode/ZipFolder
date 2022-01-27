@@ -9,7 +9,7 @@
     <SelfContained>false</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishReadyToRun>true</PublishReadyToRun>
-    <VersionPrefix>1.0.4</VersionPrefix>
+    <VersionPrefix>1.0.5</VersionPrefix>
     <Authors>Andy Wynn</Authors>
     <Copyright>2022 - Andy Wynn</Copyright>
   </PropertyGroup>

@@ -114,3 +114,4 @@ obj/Release/net6.0/win-x64/R2R/7z instructions.dll
 obj/Release/net6.0/win-x64/R2R/ZipFolder.dll
 obj/Release/net6.0/win-x64/ref/7z instructions.dll
 obj/Release/net6.0/win-x64/ref/ZipFolder.dll
+zipInstructions.json
