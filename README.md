@@ -8,4 +8,14 @@ This program works by first creating a filelist.txt which contains the files to 
 
 ## zipInstructions.json
 
-rootPath
+- **rootPath 
+- **zipDestPath": ".\\Build alpha%nextFileNumber%.7z",
+- **zipFormat** - 7z or zip are supported. Technically, this is only checked for "zip", if any other string is provided, 7z will be used.
+- **includeFiles** - 
+- **includeFolders** - 
+- **excludeFiles** - 
+- **excludeFolders** - 
+- **includeOnly** - 
+- **nextFileNumber** - 
+- **justMakeFileList** - 
+- **lastException** - 
