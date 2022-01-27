@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 static class Program
 {
-    private static ZipInstructions config;
+    private static ZipInstructions cfg;
     private const string configFileName = "zipInstructions.json";
     private static List<string> fileList = new();
     private static string fileListPath = "";
@@ -14,24 +14,24 @@ static class Program
             string cd = Directory.GetCurrentDirectory();
             try
             {
+                // Try to read the JSON file into the cfg variable
                 string jsonFileName = cd + "\\" + configFileName;
-                if (!File.Exists(jsonFileName)) throw new Exception();
-                //Try to get the JSON file (zipInstructions.json)
+                if (!File.Exists(jsonFileName)) throw new FileNotFoundException("Could not find the JSON file");
                 ReadJSONOptions(jsonFileName);
             }
             catch
             {
-                //rebuild the JSON file
+                // Rebuild the JSON file using default values
                 BuildNewOptions(cd);
-                Console.WriteLine("Config file not found, please fill in the blanks of the zipInstructions.json just created.\r\nPress any key to exit.");
+                Console.WriteLine($"Config file not found, please fill in the blanks of the zipInstructions.json just created.{Environment.NewLine}Press any key to exit.");
                 Console.ReadKey();
                 Environment.Exit(1);
             }
             BuildFileList();
-            if (!config.justMakeFileList)
+            if (!cfg.justMakeFileList)
             {
                 ZipFileList();
-                Console.WriteLine($"{config.zipFormat} file created successfully, Press any key to exit.");
+                Console.WriteLine($"{cfg.zipFormat} file created successfully, Press any key to exit.");
             }
             else
             {
@@ -41,11 +41,11 @@ static class Program
         catch (Exception ex)
         {
             Console.WriteLine("Some unknown problem occurred. Check the JSON file for the exception. Press any key to exit.");
-            config.lastException = ex;
+            cfg.lastException = $"{ex.GetType().FullName}{Environment.NewLine}Message: {ex.Message}{Environment.NewLine}StackTrace: {ex.StackTrace}";
         }
         finally
         {
-            WriteJSONOptions(config);
+            WriteJSONOptions(cfg);
             Console.ReadKey();
             Environment.Exit(1);
         }
@@ -53,58 +53,56 @@ static class Program
     private static void BuildFileList()
     {
         fileList = new();
-        GetFilesRecursive(config.rootPathNonNull, config.includeOnly);
-        //fileList.RemoveAll(a => config.excludeFiles.Any(b => EnumerateString(b, true) == a));
+        GetFilesRecursive(cfg.rootPathNonNull, cfg.includeOnly);
         {
-            List<string> ExcludeFiles = GetFileList(config.excludeFiles);
+            List<string> ExcludeFiles = GetFileList(cfg.excludeFiles);
             fileList.RemoveAll(a => ExcludeFiles.Any(b => b == a));
-            List<string> IncludeFiles = GetFileList(config.includeFiles);
+            List<string> IncludeFiles = GetFileList(cfg.includeFiles);
             foreach (string s in IncludeFiles)
             {
                 fileList.Add(EnumerateString(s, true));
             }
         }
         fileList = fileList.Distinct().ToList();
-        fileList = fileList.Select(x => x.Replace(config.rootPathNonNull + "\\", "")).ToList();
-        if (config.justMakeFileList) Console.WriteLine($"{fileList.Count} files found.");
-        fileListPath = config.rootPathNonNull + "\\filelist.txt";
+        fileList = fileList.Select(x => x.Replace(cfg.rootPathNonNull + "\\", "")).ToList();
+        if (cfg.justMakeFileList) Console.WriteLine($"{fileList.Count} files found.");
+        fileListPath = cfg.rootPathNonNull + "\\filelist.txt";
         File.Delete(fileListPath);
-        File.WriteAllText(fileListPath, string.Join("\r\n", fileList));
+        File.WriteAllText(fileListPath, string.Join(Environment.NewLine, fileList));
         void GetFilesRecursive(string directory, bool exclude = false)
         {
             foreach (string dir in Directory.GetDirectories(directory))
             {
-                /*if(new DirectoryInfo(dir).Name == ".vs")
-                {
-                    bool check = true;
-                }*/
                 bool subDirExclude = exclude;
-                if (subDirExclude || config.excludeFolders.Any(x => EnumerateString(x, true) == dir))
+                if (subDirExclude || cfg.excludeFolders.Any(x => EnumerateString(x, true) == dir))
                 {
                     subDirExclude = true;
                 }
-                if (!subDirExclude || config.includeFolders.Any(x => EnumerateString(x, true) == dir))
+                if (!subDirExclude || cfg.includeFolders.Any(x => EnumerateString(x, true) == dir))
                 {
                     subDirExclude = false;
                 }
                 GetFilesRecursive(dir, subDirExclude);
             }
-            if (!exclude || config.includeFolders.Any(x => EnumerateString(x, true) == directory))
+            if (!exclude || cfg.includeFolders.Any(x => EnumerateString(x, true) == directory))
             {
                 fileList.AddRange(Directory.EnumerateFiles(directory));
             }
         }
-        List<string> GetFileList(List<string> inList, bool checkExists = true)
+        List<string> GetFileList(List<string> inList)
         {
             List<string> rtn = new();
             foreach (string s in inList)
             {
-                string[] pathInfo = GetPathAndFilePattern(config.rootPathNonNull, s);
+                string[] pathInfo = GetPathAndFilePattern(cfg.rootPathNonNull, s);
                 rtn.AddRange(Directory.GetFiles(pathInfo[0], pathInfo[1], SearchOption.TopDirectoryOnly));
             }
             return rtn;
         }
     }
+    // Returns an array of strings where rtn[0] is the Path and rtn[1] is the file pattern
+    // pathPart1 and pathPart2 should evaluate to a valid path when concatenated.
+    // Intended for use with Directory.GetFiles(rtn[0],rtn[1])
     private static string[] GetPathAndFilePattern(string pathPart1, string pathPart2)
     {
         string[] rtn = new string[2];
@@ -113,7 +111,7 @@ static class Program
         if (a[0] == ".") a.RemoveAt(0);
         for (; a.Count > 1; a.RemoveAt(0))
         {
-            startPath += "\\" + a[0];
+            startPath += $"\\{a[0]}";
         }
         rtn[0] = startPath;
         rtn[1] = a[0];
@@ -121,10 +119,10 @@ static class Program
     }
     private static void ZipFileList()
     {
-        string args = $"/C 7z.exe a {(config.zipFormat == "zip" ? "-tzip" : "-t7z")} \"{EnumerateString(config.zipDestPath)}\" @filelist.txt -mx=9";
-        //Console.WriteLine(args);
+        string args = $"/C 7z.exe a {(cfg.zipFormat == "zip" ? "-tzip" : "-t7z")} \"{EnumerateString(cfg.zipDestPath)}\" @filelist.txt -mx=9";
+        //Console.WriteLine(args); // <- Debug
         System.Diagnostics.ProcessStartInfo processInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", args);
-        processInfo.WorkingDirectory = config.rootPathNonNull;
+        processInfo.WorkingDirectory = cfg.rootPathNonNull;
         processInfo.CreateNoWindow = true;
         processInfo.UseShellExecute = false;
         processInfo.RedirectStandardOutput = true;
@@ -145,27 +143,27 @@ static class Program
             if (!(s == null)) stdErr.Add(s);
         }
         proc.WaitForExit();
-        config.nextFileNumber++;
-        Console.Write(string.Join("\r\n", stdOut));
+        cfg.nextFileNumber++;
+        Console.Write(string.Join(Environment.NewLine, stdOut));
         Console.WriteLine("");
-        Console.Write(string.Join("\r\n", stdErr));
+        Console.Write(string.Join(Environment.NewLine, stdErr));
         Console.WriteLine("");
     }
     private static void ReadJSONOptions(string file)
     {
         string json = File.ReadAllText(file);
-        config = JsonSerializer.Deserialize<ZipInstructions>(json);
+        cfg = JsonSerializer.Deserialize<ZipInstructions>(json);
 
-        config.lastException = null;
+        cfg.lastException = null;
 
-        config.includeFiles = CleanList(config.includeFiles);
-        config.excludeFiles = CleanList(config.excludeFiles);
-        config.includeFolders = CleanList(config.includeFolders);
-        config.excludeFolders = CleanList(config.excludeFolders);
+        cfg.includeFiles = CleanList(cfg.includeFiles);
+        cfg.excludeFiles = CleanList(cfg.excludeFiles);
+        cfg.includeFolders = CleanList(cfg.includeFolders);
+        cfg.excludeFolders = CleanList(cfg.excludeFolders);
 
-        if (string.IsNullOrWhiteSpace(config.zipDestPath)) config.zipDestPath = ".\\output.zip";
+        if (string.IsNullOrWhiteSpace(cfg.zipDestPath)) cfg.zipDestPath = ".\\output.zip";
 
-        if (!config.increment)
+        if (!cfg.increment)
         {
             DetermineNextNumber();
         }
@@ -176,11 +174,16 @@ static class Program
             inList.Remove("");
             return inList;
         }
+        // Loop through the destination directory to get a list of similarly named files, 
+        // then parses them for numbers and adds one to the largest number found.
         void DetermineNextNumber()
         {
-            string[] pathInfo = GetPathAndFilePattern(config.rootPathNonNull, config.zipDestPath);
+            string[] pathInfo = GetPathAndFilePattern(cfg.rootPathNonNull, cfg.zipDestPath);
             string[] replaceString = pathInfo[1].Split("%nextFileNumber%");
-            if (replaceString.Length != 2) throw new Exception();
+            if (replaceString.Length != 2) throw new InvalidDataException(
+                $"There are {replaceString.Length} sections after splitting - expected 2. {Environment.NewLine}" +
+                $"Likely cause is either %nextFileNumber% occurs multiple times in zipDestPath or not at all. {Environment.NewLine}" +
+                "If increment is not required, change the increment flag to false.");
             List<string> fileList = Directory.GetFiles(pathInfo[0], $"{replaceString[0]}*{replaceString[1]}").ToList();
             replaceString[0] = pathInfo[0] + "\\" + replaceString[0];
             List<string> fileNumbers = fileList.Select(x => x.Replace(replaceString[0], "").Replace(replaceString[1], "")).ToList();
@@ -201,12 +204,12 @@ static class Program
                 }
                 float maxFile = fileFloats.Max();
                 int nextFileNumber = (int)maxFile;
-                if (nextFileNumber == 0) throw new Exception();
-                config.nextFileNumber = ++nextFileNumber;
+                if (nextFileNumber == 0) throw new DivideByZeroException("This error should never be seen.");
+                cfg.nextFileNumber = ++nextFileNumber;
             }
             catch
             {
-                Console.WriteLine("Problem converting the numbers in the current list to parsable values - falling back on the current value of nextFileNumber - " + config.nextFileNumber);
+                Console.WriteLine("Problem converting the numbers in the current list to parsable values - falling back on the current value of nextFileNumber - " + cfg.nextFileNumber);
                 return;
             }
         }
@@ -230,8 +233,8 @@ static class Program
     }
     private static string EnumerateString(string input, bool includeRootPath = false)
     {
-        string outStr = input.Replace("%nextFileNumber%", config.nextFileNumber.ToString()).Replace("%date%", DateTime.Now.ToString("yyyy-MM-dd"));
-        outStr = config.rootPathNonNull + "\\" + outStr.Replace(".\\", "");
+        string outStr = input.Replace("%nextFileNumber%", cfg.nextFileNumber.ToString()).Replace("%date%", DateTime.Now.ToString("yyyy-MM-dd"));
+        outStr = cfg.rootPathNonNull + "\\" + outStr.Replace(".\\", "");
         return outStr;
     }
 }
@@ -252,9 +255,9 @@ public struct ZipInstructions
         this.justMakeFileList = justMakeFileList;
         this.increment = increment;
     }
-    public string rootPath { get; set; }
+    public string rootPath { get; set; } // The root path where the application will run
     [JsonIgnore]
-    public string rootPathNonNull
+    public string rootPathNonNull // The root path, but if that is null, returns the current directory
     {
         get
         {
@@ -272,5 +275,5 @@ public struct ZipInstructions
     public bool increment { get; set; }
     public int nextFileNumber { get; set; }
     public bool justMakeFileList { get; set; }
-    public Exception? lastException { get; set; }
+    public string? lastException { get; set; }
 }

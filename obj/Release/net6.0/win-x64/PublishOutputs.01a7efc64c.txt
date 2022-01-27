@@ -1,0 +1,2 @@
+Y:\VS Code\CS\ZipFolder\bin\Release\net6.0\win-x64\publish\ZipFolder.pdb
+Y:\VS Code\CS\ZipFolder\bin\Release\net6.0\win-x64\publish\ZipFolder.exe

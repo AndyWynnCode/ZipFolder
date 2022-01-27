@@ -1,0 +1,41 @@
+{
+  "rootPath": "Y:\\VS Code\\CS\\ZipFolder\\bin\\Release\\net6.0\\win-x64\\publish",
+  "zipDestPath": "",
+  "zipFormat": "zip",
+  "includeFiles": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "includeFolders": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "excludeFiles": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    ".\\filelist.txt",
+    ".\\zipInstructions.json",
+    ".\\ZipFolder.exe"
+  ],
+  "excludeFolders": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "includeOnly": false,
+  "increment": true,
+  "nextFileNumber": 1,
+  "justMakeFileList": false,
+  "lastException": null
+}
